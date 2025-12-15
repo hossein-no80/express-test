@@ -1,0 +1,15 @@
+import type { NextFunction, Request, Response } from 'express';
+
+const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  if (req.body.token) {
+    if (req.body.token === '1234') {
+      next();
+    } else {
+      res.status(404).send('token is unvalid');
+    }
+  } else {
+    res.status(401).send('Unauthoriz');
+  }
+};
+
+export default AuthMiddleware;
