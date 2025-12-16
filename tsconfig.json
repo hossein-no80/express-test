@@ -32,14 +32,17 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
     // Recommended Options
     "strict": true,
+    "strictPropertyInitialization": false,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-  
-    "skipLibCheck": true,
+
+    "skipLibCheck": true
   }
 }

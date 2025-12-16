@@ -1,6 +1,7 @@
 import { Router, type Request, type Response } from 'express';
-import { AuthMiddleware } from '../middlewares/index.js';
+import { AuthMiddleware, ValidateMiddleware } from '../middlewares/index.js';
 import { getAllUsers, getOneUser } from './usersServices.js';
+import CreateUserDto from './dtos/usersCreateDto.js';
 const router = Router();
 
 // router.use(AuthMiddleware) #برای روت هایی ک میخایم همه روتا از میدلویر رد بشه
@@ -14,13 +15,13 @@ router.use(AuthMiddleware);
 
 //...........GET.............
 router.get('/', (req: Request, res: Response) => {
-    try {
-      res.send(getAllUsers(req, res));
-    } catch (err: any) {
-      res.status(500).send({
-        message: err.message,
-      });
-    }
+  try {
+    res.send(getAllUsers(req, res));
+  } catch (err: any) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
 });
 // __________________________
 
@@ -37,9 +38,15 @@ router.get('/:id', (req: Request, res: Response) => {
 // __________________________
 
 //...........POST.............
-router.post('/', (req: Request, res: Response) => {
-  res.send('Post');
-});
+router.post(
+  '/',
+  ValidateMiddleware(CreateUserDto),
+  (req: Request, res: Response) => {
+    // const body = req.body;                                                                                  
+
+    res.send('Post');
+  },
+);
 // __________________________
 
 //...........PUT.............
