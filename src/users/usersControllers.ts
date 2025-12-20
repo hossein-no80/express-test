@@ -1,7 +1,14 @@
 import { Router, type Request, type Response } from 'express';
-import { AuthMiddleware, ValidateMiddleware } from '../middlewares/index.js';
-import { getAllUsers, getOneUser } from './usersServices.js';
+import { AuthMiddleware } from '../middlewares/index.js';
+import {
+  createNewUser,
+  getAllUsers,
+  getOneUser,
+  deleteOneUser,
+  updateOneUser,
+} from './usersServices.js';
 import CreateUserDto from './dtos/usersCreateDto.js';
+import type User from './dtos/userDto.js';
 const router = Router();
 
 // router.use(AuthMiddleware) #برای روت هایی ک میخایم همه روتا از میدلویر رد بشه
@@ -11,53 +18,81 @@ const router = Router();
 //  res.send('get {id}');
 //});
 
-router.use(AuthMiddleware);
-
 //...........GET.............
-router.get('/', (req: Request, res: Response) => {
+router.get('/', AuthMiddleware, async (req: any, res: Response) => {
   try {
-    res.send(getAllUsers(req, res));
+    const users = await getAllUsers();
+    res.send(users);
   } catch (err: any) {
-    res.status(500).send({
-      message: err.message,
-    });
+    res.status(500).send({ message: err.message });
   }
 });
 // __________________________
 
 //...........GET/{id}.............
-router.get('/:id', (req: Request, res: Response) => {
-  // try {
-  //   res.send(getOneUser(2));
-  // } catch (err: any) {
-  //   res.status(500).send({
-  //     message: err.message,
-  //   });
-  // }
+router.get('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+  try {
+    const user = await getOneUser(id);
+    res.json(user);
+  } catch (err: any) {
+    res.status(404).json({ message: err.message });
+  }
 });
 // __________________________
 
 //...........POST.............
 router.post(
   '/',
-  ValidateMiddleware(CreateUserDto),
-  (req: Request, res: Response) => {
-    // const body = req.body;                                                                                  
 
-    res.send('Post');
+  async (req: Request, res: Response) => {
+    const body: User = req.body;
+    try {
+      const user = await createNewUser(body);
+      res.status(201).json(user); // داده ایجاد شده را برگردان
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to create user' });
+    }
   },
 );
+
 // __________________________
 
 //...........PUT.............
-router.put('/:id', (req: Request, res: Response) => {
-  res.send('put');
+router.put('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const updateData = req.body;
+
+  if (!id) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  try {
+    const updatedUser = await updateOneUser(id, updateData);
+    res.json({ message: 'User updated successfully', user: updatedUser });
+  } catch (err: any) {
+    res.status(404).json({ message: err.message });
+  }
 });
 // __________________________
 
 //...........DELETE.............
-router.delete('/:id', (req: Request, res: Response) => {
-  res.send('delete');
+router.delete('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  try {
+    const deletedUser = await deleteOneUser(id);
+    res.json({ message: 'User deleted successfully', user: deletedUser });
+  } catch (err: any) {
+    res.status(404).json({ message: err.message });
+  }
 });
 // __________________________
 

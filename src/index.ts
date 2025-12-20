@@ -1,29 +1,35 @@
 import express from 'express';
-import type { Request, Response } from 'express';
-
-//constrollers
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
 import usersControllers from './users/usersControllers.js';
 import productsControllers from './products/productsControllers.js';
-import AuthMiddleware from './middlewares/authMiddleware.js';
-//port
-const port = 3000;
-//express app
-const app = express();
+import authController from './auth/authController.js';
 
-//middleware
+// Load environment variables
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Middleware
 app.use(express.json());
 
-//......for root project......
-// app.get('/', (req: Request, res: Response) => {
-//   res.send('Hello World!');
-// });
-//____________________________
-
-//routes group
+// Routes
 app.use('/users', usersControllers);
 app.use('/products', productsControllers);
+app.use('/auth', authController);
 
-//server start
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+// Connect to MongoDB and start server
+const startServer = async () => {
+  try {
+    await connectDB(); // این خودش mongoose.connect رو انجام میده
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  } catch (err) {
+    console.error('Failed to connect to MongoDB', err);
+    process.exit(1);
+  }
+};
+
+startServer();
