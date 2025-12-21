@@ -1,3 +1,4 @@
 import AuthMiddleware from './authMiddleware.js';
 import ValidateMiddleware from './validaMiddleware.js';
-export { AuthMiddleware, ValidateMiddleware };
+import ErrorHandelingMiddleware from './ErrorHandelingMid.js';
+export { AuthMiddleware, ValidateMiddleware, ErrorHandelingMiddleware };
