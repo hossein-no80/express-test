@@ -1,57 +1,114 @@
-import { Router, type Request, type Response } from 'express';
+import {
+   Router,
+   type Request,
+   type Response,
+   type NextFunction,
+} from 'express';
 import { AuthMiddleware } from '../middlewares/index.js';
-import { getAllUsers, getOneUser } from './productsServices.js';
+import {
+   createNewProducts,
+   deleteProducts,
+   getAllProducts,
+   updateProducts,
+   getOneProducts,
+} from './productsServices.js';
+import type CreateProductsDto from './dtos/productsCreateDto.js';
+import type { RequestWithUser } from '../types/requestWithUsr.js';
+import logger from '../helper/logger.js';
+import GetAllProductsDto from './dtos/getAllProductsDto.js';
 const router = Router();
 
-// router.use(AuthMiddleware) #برای روت هایی ک میخایم همه روتا از میدلویر رد بشه
-
-//این هم برای روت هایی ک میخاهیم از میدلویر ها رد بشن
-//router.get('/:id',AuthMiddleware , (req: Request, res: Response) => {
-//  res.send('get {id}');
-//});
-
-router.use(AuthMiddleware);
-
 //...........GET.............
-router.get('/', (req: Request, res: Response) => {
-    try {
-      res.send(getAllUsers(req, res));
-    } catch (err: any) {
-      res.status(500).send({
-        message: err.message,
-      });
-    }
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+   try {
+      const filters: GetAllProductsDto = req.body;
+      const result = await getAllProducts(filters);
+      res.status(200).send(result);
+   } catch (error: any) {
+      next(error);
+   }
 });
 // __________________________
 
 //...........GET/{id}.............
-router.get('/:id', (req: Request, res: Response) => {
-  // try {
-  //   res.send(getOneUser(2));
-  // } catch (err: any) {
-  //   res.status(500).send({
-  //     message: err.message,
-  //   });
-  // }
+router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+   try {
+      const { id } = req.params;
+      if (!id) return res.status(400).json({ message: 'ID is required' });
+      const result = await getOneProducts(id);
+      res.status(200).json(result);
+   } catch (err: any) {
+      next(err);
+   }
 });
 // __________________________
 
 //...........POST.............
-router.post('/', (req: Request, res: Response) => {
-  res.send('Post');
+router.post('/', AuthMiddleware, async (req: Request, res, next) => {
+   try {
+      const reqWithUser = req as RequestWithUser; // cast امن
+      if (!reqWithUser.user)
+         return res.status(401).json({ message: 'Unauthorized' });
+
+      const data = req.body;
+      const result = await createNewProducts({
+         ...data,
+         user: reqWithUser.user,
+      });
+      res.status(200).json(result);
+   } catch (error) {
+      next(error);
+   }
 });
 // __________________________
 
 //...........PUT.............
-router.put('/:id', (req: Request, res: Response) => {
-  res.send('put');
-});
+router.put(
+   '/:id',
+   AuthMiddleware,
+   async (req: Request, res: Response, next: NextFunction) => {
+      try {
+         const { id } = req.params;
+         if (!id) return res.status(400).json({ message: 'ID is required' });
+         const reqWithUser = req as RequestWithUser; // cast امن
+         if (!reqWithUser.user)
+            return res.status(401).json({ message: 'Unauthorized' });
+         const data: CreateProductsDto = req.body;
+
+         const result = await updateProducts(id, {
+            ...data,
+            user: reqWithUser.user,
+         });
+
+         res.status(200).json(result);
+      } catch (error) {
+         next(error);
+      }
+   },
+);
 // __________________________
 
 //...........DELETE.............
-router.delete('/:id', (req: Request, res: Response) => {
-  res.send('delete');
-});
+router.delete(
+   '/:id',
+   AuthMiddleware,
+   async (req: Request, res: Response, next: NextFunction) => {
+      try {
+         const { id } = req.params;
+         if (!id) return res.status(400).json({ message: 'ID is required' });
+         const reqWithUser = req as RequestWithUser; // cast امن
+         if (!reqWithUser.user)
+            return res.status(401).json({ message: 'Unauthorized' });
+         const data: CreateProductsDto = req.body;
+
+         const result = await deleteProducts(id, reqWithUser.user);
+
+         res.status(200).json(result);
+      } catch (error) {
+         next(error);
+      }
+   },
+);
 // __________________________
 
 export default router;

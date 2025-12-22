@@ -1,2 +1,11 @@
 2025-12-21  11:05:15 warn : Server running on port 3000
 2025-12-21  11:05:15 error : Server running on port 3000
+2025-12-22  10:55:10 error : products validation failed: price: Cast to Number failed for value "zsfsadf" (type string) at path "price"
+2025-12-22  11:45:35 error : Cast to ObjectId failed for value "{ id: '6948f5f2da10ff61c6e0ceb1', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-22  11:46:31 error : Cast to ObjectId failed for value "{ id: '6948f5f2da10ff61c6e0ceb1', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-22  11:47:05 error : Cast to ObjectId failed for value "{ id: '6948f5f2da10ff61c6e0ceb1', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-22  11:49:55 error : Cast to ObjectId failed for value "{ id: '6948f5f2da10ff61c6e0ceb1', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-22  11:50:06 error : Cast to ObjectId failed for value "{ id: '6948f5f2da10ff61c6e0ceb1', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-22  11:50:11 error : Cast to ObjectId failed for value "{ id: '6948f5f2da10ff61c6e0ceb1', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-22  11:57:41 error : Cast to ObjectId failed for value "{ id: '6948f0cb562d96c733d952f2', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-22  12:00:11 error : Cast to ObjectId failed for value "{ id: '69490158edeae6bcd43fba77', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"

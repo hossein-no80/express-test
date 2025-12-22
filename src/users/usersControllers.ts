@@ -1,14 +1,15 @@
 import { Router, type Request, type Response } from 'express';
 import { AuthMiddleware } from '../middlewares/index.js';
 import {
-  createNewUser,
-  getAllUsers,
-  getOneUser,
-  deleteOneUser,
-  updateOneUser,
+   createNewUser,
+   getAllUsers,
+   getOneUser,
+   deleteOneUser,
+   updateOneUser,
 } from './usersServices.js';
 import CreateUserDto from './dtos/usersCreateDto.js';
 import type User from './dtos/userDto.js';
+import type { RequestWithUser } from '../types/requestWithUsr.js';
 const router = Router();
 
 // router.use(AuthMiddleware) #برای روت هایی ک میخایم همه روتا از میدلویر رد بشه
@@ -19,80 +20,83 @@ const router = Router();
 //});
 
 //...........GET.............
-router.get('/', AuthMiddleware, async (req: any, res: Response) => {
-  try {
-    const users = await getAllUsers();
-    res.send(users);
-  } catch (err: any) {
-    res.status(500).send({ message: err.message });
-  }
+router.get('/', AuthMiddleware, async (req: Request, res: Response) => {
+   try {
+      const reqWithUser = req as RequestWithUser; // cast امن
+      if (!reqWithUser.user)
+         return res.status(401).json({ message: 'Unauthorized' });
+      const users = await getAllUsers();
+      res.send(users);
+   } catch (err: any) {
+      res.status(500).send({ message: err.message });
+   }
 });
 // __________________________
 
 //...........GET/{id}.............
 router.get('/:id', async (req: Request, res: Response) => {
-  const { id } = req.params;
-  if (!id) {
-    return res.status(400).json({ message: 'User ID is required' });
-  }
-  try {
-    const user = await getOneUser(id);
-    res.json(user);
-  } catch (err: any) {
-    res.status(404).json({ message: err.message });
-  }
+   const { id } = req.params;
+   if (!id) {
+      return res.status(400).json({ message: 'User ID is required' });
+   }
+   try {
+      const user = await getOneUser(id);
+      res.json(user);
+   } catch (err: any) {
+      res.status(404).json({ message: err.message });
+   }
 });
 // __________________________
 
 //...........POST.............
 router.post(
-  '/',
+   '/',
 
-  async (req: Request, res: Response) => {
-    const body: User = req.body;
-    try {
-      const user = await createNewUser(body);
-      res.status(201).json(user); // داده ایجاد شده را برگردان
-    } catch (err) {
-      res.status(500).json({ error: 'Failed to create user' });
-    }
-  },
+   async (req: Request, res: Response) => {
+      const body: User = req.body;
+      try {
+         const user = await createNewUser(body);
+         res.status(201).json(user); // داده ایجاد شده را برگردان
+      } catch (err) {
+         res.status(500).json({ error: 'Failed to create user' });
+      }
+   },
 );
 
 // __________________________
 
 //...........PUT.............
 router.put('/:id', async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const updateData = req.body;
+   const { id } = req.params;
+   const updateData = req.body;
 
-  if (!id) {
-    return res.status(400).json({ message: 'User ID is required' });
-  }
+   if (!id) {
+      return res.status(400).json({ message: 'User ID is required' });
+   }
 
-  try {
-    const updatedUser = await updateOneUser(id, updateData);
-    res.json({ message: 'User updated successfully', user: updatedUser });
-  } catch (err: any) {
-    res.status(404).json({ message: err.message });
-  }
+   try {
+      const updatedUser = await updateOneUser(id, updateData);
+      res.json({ message: 'User updated successfully', user: updatedUser });
+   } catch (err: any) {
+      res.status(404).json({ message: err.message });
+   }
 });
 // __________________________
 
 //...........DELETE.............
 router.delete('/:id', async (req: Request, res: Response) => {
-  const { id } = req.params;
+   const { id } = req.params;
 
-  if (!id) {
-    return res.status(400).json({ message: 'User ID is required' });
-  }
+   if (!id) {
+      return res.status(400).json({ message: 'User ID is required' });
+   }
 
-  try {
-    const deletedUser = await deleteOneUser(id);
-    res.json({ message: 'User deleted successfully', user: deletedUser });
-  } catch (err: any) {
-    res.status(404).json({ message: err.message });
-  }
+   try {
+      const deletedUser = await deleteOneUser(id);
+      res.json({ message: 'User deleted successfully', user: deletedUser });
+   } catch (err: any) {
+      res.status(404).json({ message: err.message });
+   }
 });
 // __________________________
 

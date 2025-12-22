@@ -6,11 +6,14 @@ import productsControllers from './products/productsControllers.js';
 import authController from './auth/authController.js';
 import logger from './helper/logger.js';
 import ErrorHandelingMid from './middlewares/ErrorHandelingMid.js';
+import cors from 'cors';
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
+app.use(cors());
+
 const port = process.env.PORT || 3000;
 
 // Middleware

@@ -1,25 +1,18 @@
-import {
-  IsDefined,
-  IsEmail,
-  IsOptional,
-  IsStrongPassword,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsDefined, IsEmail, MaxLength, MinLength } from 'class-validator';
 
 class CreateUserDto {
-  @MaxLength(20)
-  name: string;
+   @MaxLength(20)
+   name: string;
 
-  @IsEmail()
-  email: string;
+   @IsEmail()
+   email: string;
 
-  @MinLength(8)
-  @IsDefined()
-  password: string;
+   @MinLength(8)
+   @IsDefined()
+   password: string;
 
-  @IsDefined()
-  age?: number;
+   @IsDefined()
+   age?: number;
 }
 
 export default CreateUserDto;
