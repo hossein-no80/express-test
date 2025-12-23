@@ -29,6 +29,7 @@
     "mongose": "^0.0.2-security",
     "prettier": "^3.7.4",
     "reflect-metadata": "^0.2.2",
+    "socket.io": "^4.8.2",
     "winston": "^3.19.0"
   },
   "devDependencies": {
