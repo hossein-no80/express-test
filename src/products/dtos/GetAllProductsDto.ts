@@ -1,18 +1,29 @@
-import { IsOptional } from 'class-validator';
+import { IsOptional, IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export default class GetAllProductsDto {
    @IsOptional()
-   title: string;
+   title?: string;
 
    @IsOptional()
-   price: number;
+   @Type(() => Number)
+   @IsNumber()
+   start_price?: number;
+   @IsOptional()
+   @Type(() => Number)
+   @IsNumber()
+   end_price?: number;
 
    @IsOptional()
-   tags: string[];
+   tags?: string[];
 
    @IsOptional()
-   page: number;
+   @Type(() => Number)
+   @IsNumber()
+   page?: number;
 
    @IsOptional()
-   page_size: number;
+   @Type(() => Number)
+   @IsNumber()
+   page_size?: number;
 }

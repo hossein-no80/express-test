@@ -1,16 +1,34 @@
-import { Server } from 'node:http';
 import productsModel from '../models/productsModel.js';
 import type CreateProductsDto from './dtos/productsCreateDto.js';
 import ServerError from '../errors/serverError.js';
-import type GetAllProductsDto from './dtos/getAllProductsDto.js';
+import type GetAllProductsDto from './dtos/GetAllProductsDto.js';
 
 export const getAllProducts = async (filters: GetAllProductsDto) => {
-   const { title, price, tags, page, page_size } = filters;
-   const result = await productsModel.find(
-      {},
-      {},
-      { skip: page_size * (page - 1), limit: page_size },
-   );
+   const { start_price, end_price, tags, page = 1, page_size = 5 } = filters;
+
+   const query: Record<string, any> = {};
+
+   // tags filter
+   if (tags) {
+      const tagsArray = Array.isArray(tags) ? tags : [tags];
+      query.tags = { $in: tagsArray };
+   }
+
+   // price range filter
+   if (start_price !== undefined && end_price !== undefined) {
+      const min = Number(start_price);
+      const max = Number(end_price);
+
+      if (!isNaN(min) && !isNaN(max)) {
+         query.price = { $gte: min, $lte: max };
+      }
+   }
+
+   const result = await productsModel
+      .find(query)
+      .skip(page_size * (page - 1))
+      .limit(page_size);
+
    return result;
 };
 

@@ -8,3 +8,19 @@
 2025-12-22  11:50:11 error : Cast to ObjectId failed for value "{ id: '6948f5f2da10ff61c6e0ceb1', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
 2025-12-22  11:57:41 error : Cast to ObjectId failed for value "{ id: '6948f0cb562d96c733d952f2', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
 2025-12-22  12:00:11 error : Cast to ObjectId failed for value "{ id: '69490158edeae6bcd43fba77', user: '69478b21dd38d6059ab4473e' }" (type Object) at path "_id" for model "products"
+2025-12-23  09:29:12 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:09 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:17 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:24 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:31 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:32:11 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:32:15 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:32:39 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:35:39 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:35:47 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:40:23 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:41:00 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:15 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:16 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:46 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:47 error : Cannot destructure property 'title' of 'filters' as it is undefined.

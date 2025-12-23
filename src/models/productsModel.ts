@@ -4,6 +4,14 @@ const userSchema = new mongoose.Schema({
    title: String,
    description: String,
    price: Number,
+   creareAt: {
+      type: Date,
+      default: Date.now,
+   },
+   updateAt: {
+      type: Date,
+      default: Date.now,
+   },
    tags: {
       type: [String],
       default: [],

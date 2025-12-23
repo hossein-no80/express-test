@@ -218,3 +218,64 @@
 2025-12-22  13:56:03 info : Server running on port 3000
 2025-12-22  13:56:14 info : Server running on port 3000
 2025-12-22  13:58:25 info : Server running on port 3000
+2025-12-23  08:53:22 info : Server running on port 3000
+2025-12-23  09:29:12 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:09 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:17 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:24 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:31:31 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:32:10 info : Server running on port 3000
+2025-12-23  09:32:11 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:32:15 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:32:39 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:33:59 info : Server running on port 3000
+2025-12-23  09:34:57 info : Server running on port 3000
+2025-12-23  09:35:32 info : Server running on port 3000
+2025-12-23  09:35:39 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:35:47 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:40:19 info : Server running on port 3000
+2025-12-23  09:40:23 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:40:39 info : Server running on port 3000
+2025-12-23  09:40:56 info : Server running on port 3000
+2025-12-23  09:41:00 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:10 info : Server running on port 3000
+2025-12-23  09:42:15 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:16 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:45 info : Server running on port 3000
+2025-12-23  09:42:46 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:42:47 error : Cannot destructure property 'title' of 'filters' as it is undefined.
+2025-12-23  09:43:30 info : Server running on port 3000
+2025-12-23  09:46:03 info : Server running on port 3000
+2025-12-23  09:46:43 info : Server running on port 3000
+2025-12-23  09:47:01 info : MongoDB connected ✅
+2025-12-23  09:47:01 info : Server running on port 3000
+2025-12-23  09:47:12 info : MongoDB connected ✅
+2025-12-23  09:47:12 info : Server running on port 3000
+2025-12-23  09:47:24 info : MongoDB connected ✅
+2025-12-23  09:47:24 info : Server running on port 3000
+2025-12-23  09:48:29 info : MongoDB connected ✅
+2025-12-23  09:48:29 info : Server running on port 3000
+2025-12-23  09:48:56 info : MongoDB connected ✅
+2025-12-23  09:48:56 info : Server running on port 3000
+2025-12-23  09:49:01 info : MongoDB connected ✅
+2025-12-23  09:49:01 info : Server running on port 3000
+2025-12-23  09:49:18 info : MongoDB connected ✅
+2025-12-23  09:49:18 info : Server running on port 3000
+2025-12-23  09:51:50 info : MongoDB connected ✅
+2025-12-23  09:51:50 info : Server running on port 3000
+2025-12-23  09:52:22 info : MongoDB connected ✅
+2025-12-23  09:52:22 info : Server running on port 3000
+2025-12-23  10:08:48 info : MongoDB connected ✅
+2025-12-23  10:08:48 info : Server running on port 3000
+2025-12-23  10:10:51 info : MongoDB connected ✅
+2025-12-23  10:10:51 info : Server running on port 3000
+2025-12-23  10:11:03 info : MongoDB connected ✅
+2025-12-23  10:11:03 info : Server running on port 3000
+2025-12-23  10:12:36 info : MongoDB connected ✅
+2025-12-23  10:12:36 info : Server running on port 3000
+2025-12-23  10:12:41 info : MongoDB connected ✅
+2025-12-23  10:12:41 info : Server running on port 3000
+2025-12-23  10:14:09 info : MongoDB connected ✅
+2025-12-23  10:14:09 info : Server running on port 3000
+2025-12-23  10:15:32 info : MongoDB connected ✅
+2025-12-23  10:15:32 info : Server running on port 3000

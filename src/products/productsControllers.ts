@@ -15,13 +15,13 @@ import {
 import type CreateProductsDto from './dtos/productsCreateDto.js';
 import type { RequestWithUser } from '../types/requestWithUsr.js';
 import logger from '../helper/logger.js';
-import GetAllProductsDto from './dtos/getAllProductsDto.js';
+import GetAllProductsDto from './dtos/GetAllProductsDto.js';
 const router = Router();
 
 //...........GET.............
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
    try {
-      const filters: GetAllProductsDto = req.body;
+      const filters: GetAllProductsDto = req.query;
       const result = await getAllProducts(filters);
       res.status(200).send(result);
    } catch (error: any) {
